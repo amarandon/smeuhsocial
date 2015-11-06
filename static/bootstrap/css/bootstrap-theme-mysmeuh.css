@@ -474,7 +474,7 @@ a.badge:hover {
   padding-left: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .homepage-blogs {
     padding-left: 0;
   }
