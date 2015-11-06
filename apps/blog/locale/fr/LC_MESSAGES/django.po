@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: v1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-30 16:54+0100\n"
+"POT-Creation-Date: 2015-05-10 22:27+0200\n"
 "PO-Revision-Date: 2010-03-01 14:18+0100\n"
 "Last-Translator: James Pic <http://jamespic.com/>\n"
 "Language-Team: Pinax Team <http://www.transifex.net/projects/p/pinax/team/fr/"
@@ -147,25 +147,25 @@ msgstr ""
 "<a href=\"%(user_url)s\">%(user_display)s</a> a publié un commentaire sur "
 "l'article '<a href=\"%(post_url)s\">%(post)s</a>' de votre blog."
 
-#: apps/blog/views.py:70
+#: apps/blog/views.py:71
 msgid "You can't delete posts that aren't yours"
 msgstr "Vous ne pouvez rien effacer dont vous n'êtes pas l'auteur"
 
-#: apps/blog/views.py:77
+#: apps/blog/views.py:78
 #, python-format
 msgid "Successfully deleted post '%s'"
 msgstr "Article '%s' effacé avec succès"
 
-#: apps/blog/views.py:101
+#: apps/blog/views.py:102
 #, python-format
 msgid "Successfully saved post '%s'"
 msgstr "Article '%s' sauvé avec succès"
 
-#: apps/blog/views.py:126
+#: apps/blog/views.py:127
 msgid "You can't edit posts that aren't yours"
 msgstr "Vous ne pouvez pas modifier les messages dont vous n'êtes pas l'auteur"
 
-#: apps/blog/views.py:135
+#: apps/blog/views.py:136
 #, python-format
 msgid "Successfully updated post '%s'"
 msgstr "Article '%s' mis à jour avec succès"

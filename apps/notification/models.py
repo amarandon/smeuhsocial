@@ -4,6 +4,8 @@ try:
     import cPickle as pickle
 except ImportError:
     import pickle
+import logging
+log = logging.getLogger('django.request')
 
 from django.db import models
 from django.db.models.query import QuerySet
@@ -28,6 +30,7 @@ QUEUE_ALL = getattr(settings, "NOTIFICATION_QUEUE_ALL", False)
 
 class LanguageStoreNotAvailable(Exception):
     pass
+
 
 class NoticeType(models.Model):
     
@@ -325,7 +328,10 @@ def send_now(users, label, extra_context=None, on_site=True, sender=None):
             notice_type=notice_type, on_site=on_site, sender=sender)
         if should_send(user, notice_type, "1") and user.email and user.is_active: # Email
             recipients.append(user.email)
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+        try:
+            send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+        except Exception as exc:
+            log.error(u"Failed sending notification email: %s", exc)
     
     # reset environment to original language
     activate(current_language)

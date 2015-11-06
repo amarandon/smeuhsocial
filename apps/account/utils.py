@@ -5,16 +5,18 @@ from django.contrib.auth import login
 from account.signals import user_logged_in
 
 
-def get_default_redirect(request, fallback_url, redirect_field_name="next", session_key_value="redirect_to"):
+def get_default_redirect(request, fallback_url, redirect_field_name="next",
+                         session_key_value="redirect_to"):
     """
     Returns the URL to be used in login procedures by looking at different
     values in the following order:
-    
+
     - a REQUEST value, GET or POST, named "next" by default.
     - LOGIN_REDIRECT_URL - the URL in the setting
     - LOGIN_REDIRECT_URLNAME - the name of a URLconf entry in the settings
     """
-    redirect_to = request.REQUEST.get(redirect_field_name)
+    redirect_to = request.GET.get(redirect_field_name,
+                                  request.POST.get(redirect_field_name))
     if not redirect_to:
         # try the session if available
         if hasattr(request, "session"):
@@ -26,7 +28,8 @@ def get_default_redirect(request, fallback_url, redirect_field_name="next", sess
 
 
 def user_display(user):
-    func = getattr(settings, "ACCOUNT_USER_DISPLAY", lambda user: user.username)
+    func = getattr(
+        settings, "ACCOUNT_USER_DISPLAY", lambda user: user.username)
     return func(user)
 
 

@@ -8,7 +8,7 @@
   <div class="clearfix tweet" id="{% if tli_index %}tli_{{ tli_index }}{% else %}t{{ tweet.id }}{% endif %}">
     <span class="timesince pull-right">{% blocktrans with tweet.sent|timesince as tweet_age %}{{ tweet_age }} ago{% endblocktrans %}</span>
     {% if prefix_sender %}{% avatar_link tweet.sender 24 %}
-  	<a href="{% url 'profile_detail' tweet.sender %}"><strong>{% user_display tweet.sender %}</strong></a>{% endif %}
+  	<a class="sender" href="{% url 'profile_detail' tweet.sender %}"><strong>{% user_display tweet.sender %}</strong></a>{% endif %}
     {% render_tweet_text tweet %}    
     <a class="reply" href="{% url 'tweets_you_follow' %}?reply={{ tweet.sender }}">{% trans "reply" %}</a>
   </div>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: v1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-30 16:54+0100\n"
+"POT-Creation-Date: 2015-05-10 22:27+0200\n"
 "PO-Revision-Date: 2010-03-01 14:22+0100\n"
 "Last-Translator: James Pic <http://jamespic.com/     >\n"
 "Language-Team: Pinax Team <http://www.transifex.net/projects/p/pinax/team/fr/"
@@ -171,47 +171,47 @@ msgstr "Horodatage"
 msgid "reset yet?"
 msgstr "déjà rédéfini?"
 
-#: apps/account/openid_consumer.py:124 apps/account/views.py:93
-#: apps/account/views.py:147
+#: apps/account/openid_consumer.py:124 apps/account/views.py:96
+#: apps/account/views.py:151
 #, python-format
 msgid "Successfully logged in as %(user)s."
 msgstr "Connecté en temps que %(user)s avec succès."
 
-#: apps/account/views.py:178 apps/account/views.py:193
+#: apps/account/views.py:182 apps/account/views.py:197
 #, python-format
 msgid "Confirmation email sent to %(email)s"
 msgstr "Courriel de confirmation envoyé à %(email)s"
 
-#: apps/account/views.py:209
+#: apps/account/views.py:213
 #, python-format
 msgid "Removed email address %(email)s"
 msgstr "Adresse email retirée %(email)s"
 
-#: apps/account/views.py:249 apps/account/views.py:377
+#: apps/account/views.py:253 apps/account/views.py:381
 msgid "Password successfully changed."
 msgstr "Mot de passe changé avec succès."
 
-#: apps/account/views.py:279
+#: apps/account/views.py:283
 msgid "Password successfully set."
 msgstr "Mot de passe changé avec succès."
 
-#: apps/account/views.py:406
+#: apps/account/views.py:410
 msgid "Timezone successfully updated."
 msgstr "Fuseau horaire mis à jour avec succès."
 
-#: apps/account/views.py:432
+#: apps/account/views.py:436
 msgid "Language successfully updated."
 msgstr "Langue mise à jour avec succès."
 
-#: apps/account/views.py:470
+#: apps/account/views.py:474
 msgid "Twitter authentication failed"
 msgstr "Echec de l'authentification sur Twitter"
 
-#: apps/account/views.py:475
+#: apps/account/views.py:479
 msgid "Successfully authenticated."
 msgstr "Authentifié avec succès."
 
-#: apps/account/views.py:503
+#: apps/account/views.py:507
 msgid "Removed twitter account information successfully."
 msgstr "Informations de connection au compte twitter effacées."
 

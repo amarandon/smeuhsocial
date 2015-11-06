@@ -245,13 +245,16 @@ if 'test' in sys.argv:
         "account.auth_backends.AuthenticationBackend",
     ]
     PASSWORD_HASHERS = (
-            'django.contrib.auth.hashers.MD5PasswordHasher',
+        'django.contrib.auth.hashers.MD5PasswordHasher',
     )
 else:
     AUTHENTICATION_BACKENDS = [
         "django_auth_ldap.backend.LDAPBackend",
         "account.auth_backends.AuthenticationBackend",
     ]
+
+AUTHENTICATION_BACKENDS.append(
+    'django.contrib.auth.backends.ModelBackend')
 
 LOGIN_URL = "/account/login/" # @@@ any way this can be a url name?
 LOGIN_REDIRECT_URLNAME = "home"
@@ -324,11 +327,6 @@ AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=people,o=loc",
 )
 
 AUTH_LDAP_GROUP_TYPE = PosixGroupType()
-
-AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    "is_staff": "cn=admin,ou=groups,o=loc",
-    "is_superuser": "cn=admin,ou=groups,o=loc"
-}
 
 ALLOWED_HOSTS = ['my.smeuh.org']
 

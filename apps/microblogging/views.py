@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
-from microblogging.utils import twitter_account_for_user, twitter_verify_credentials
 from microblogging.models import Tweet, TweetInstance, Following, get_following_followers_lists
 from microblogging.forms import TweetForm
 from tagging.models import parse_tagged_text
@@ -27,8 +26,6 @@ def personal(request, form_class=TweetForm,
     just the tweets the current user is following
     """
 
-    twitter_account = twitter_account_for_user(request.user)
-
     following_list, followers_list = get_following_followers_lists(request.user)
 
     if request.method == "POST":
@@ -36,8 +33,6 @@ def personal(request, form_class=TweetForm,
         if form.is_valid():
             text = form.cleaned_data['text']
             tweet = form.save()
-            if request.POST.get("pub2twitter", False):
-                twitter_account.PostUpdate(text)
             if request.is_ajax():
                 return HttpResponse("ok")
             else:
@@ -57,7 +52,6 @@ def personal(request, form_class=TweetForm,
         "form": form,
         "reply": reply,
         "tweets": tweets,
-        "twitter_authorized": twitter_verify_credentials(twitter_account),
         "following_list": following_list,
         "followers_list": followers_list
     }, context_instance=RequestContext(request))
@@ -66,14 +60,11 @@ personal = login_required(personal)
 @login_required
 def post_tweet(request, form_class=TweetForm, success_url=None):
     if request.method == "POST":
-        twitter_account = twitter_account_for_user(request.user)
         form = form_class(request.user, request.POST)
         if form.is_valid():
             text = form.cleaned_data['text']
             tweet = form.save()
             parse_tagged_text(text, tweet.id, 'tweet')
-            if request.POST.get("pub2twitter", False):
-                twitter_account.PostUpdate(text)
             if request.is_ajax():
                 return render_to_response('microblogging/_tweet.html', {
                     'tweet': tweet,

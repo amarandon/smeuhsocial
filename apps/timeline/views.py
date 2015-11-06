@@ -166,7 +166,7 @@ class FriendsPageView(TemplateView):
 
         tweets = [
             TimeLineItem(item, item.sent, item.sender, "timeline/_tweet.html")
-            for item in Tweet.objects.all().filter(sent__gte=ago, sender_id__in=[user.id for user in friends], sender_type__name="user").order_by("-sent")
+            for item in Tweet.objects.all().filter(sent__gte=ago, sender_id__in=[user.id for user in friends], sender_type__model="user").order_by("-sent")
             ]
 
         posts = [
@@ -209,7 +209,7 @@ class FollowingPageView(TemplateView):
 
         tweets = [
             TimeLineItem(item, item.sent, item.sender, "timeline/_tweet.html")
-            for item in Tweet.objects.all().filter(sent__gte=ago, sender_id__in=[user.id for user in following_list], sender_type__name="user").order_by("-sent")
+            for item in Tweet.objects.all().filter(sent__gte=ago, sender_id__in=[user.id for user in following_list], sender_type__model="user").order_by("-sent")
             ]
 
         posts = [
@@ -263,7 +263,7 @@ class UserPageView(TemplateView):
         
         tweets = [
             TimeLineItem(item, item.sent, item.sender, "timeline/_tweet.html")
-            for item in Tweet.objects.all().filter(sender_id=user.id, sender_type__name="user").order_by("-sent")[:limit]
+            for item in Tweet.objects.all().filter(sender_id=user.id, sender_type__model="user").order_by("-sent")[:limit]
             ]
 
         context['latest_blogs'] = Post.objects.all().filter(status=2, author=user).order_by("-publish")[:limit]

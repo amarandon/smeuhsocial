@@ -3,3 +3,7 @@
 *.swp
 dev.sqlite3
 /site_media
+.coverage
+backup
+local_settings.py
+secret_settings.py

@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/amarandon/smeuhsocial.svg?branch=master)](https://travis-ci.org/amarandon/smeuhsocial)
+[![Coverage Status](https://coveralls.io/repos/amarandon/smeuhsocial/badge.svg)](https://coveralls.io/r/amarandon/smeuhsocial)
 
 Introduction
 ============
@@ -22,9 +23,9 @@ Requirements
  - Python 2.7
  - Development packages for Python, LDAP, SASL and SSL. For Debian-like systems:
 
-    $ sudo apt-get install python-dev libldap-dev libsasl2-dev libssl-dev \
-                           zlib1g-dev libfreetype6-dev liblcms1-dev \
-                           libjpeg62-dev
+     $ sudo apt-get install python-dev libldap-dev libsasl2-dev libssl-dev \
+                            zlib1g-dev libfreetype6-dev liblcms1-dev \
+                            libjpeg62-dev libtiff-dev
 
  - [OpenLDAP](http://www.openldap.org/) server. OpenLDAP server is necessary
    *only if you want to work on OpenLDAP authentication*. You might get into
