@@ -240,7 +240,7 @@ select,textarea,input[type="text"],input[type="password"],input[type="datetime"]
 }
 
 .timeline-thumb {
-	margin: 3px 5px 0 3px;
+	margin: 2.5px 5px 2.5px 0;
 	max-height: 96px;
 }
 
@@ -301,6 +301,7 @@ footer {
   bottom: 0;
   */
 	width: 100%;
+  margin-top: 15px;
 }
 
 footer a,footer a:visited {
@@ -467,4 +468,14 @@ a.badge:hover {
 	border: 1px dashed silver;
 	padding: 1em;
 	margin-bottom: 1em;
+}
+
+.homepage-tracks {
+  padding-left: 0;
+}
+
+@media (max-width: 768px) {
+  .homepage-blogs {
+    padding-left: 0;
+  }
 }
