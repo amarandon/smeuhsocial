@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-10 22:27+0200\n"
+"POT-Creation-Date: 2015-05-24 21:51+0200\n"
 "PO-Revision-Date: 2010-03-04 09:26+0100\n"
 "Last-Translator: James Pic <http://jamespic.com>\n"
 "Language-Team: Pinax French <http://www.transifex.net/projects/p/pinax/team/"
@@ -296,12 +296,12 @@ msgstr "Abonnés"
 msgid "followed"
 msgstr "Se désabonner"
 
-#: apps/microblogging/views.py:126
+#: apps/microblogging/views.py:117
 #, fuzzy, python-format
 msgid "You are now following %(other_user)s"
 msgstr "Vous êtes « « ami » avec %(other_user_display)s."
 
-#: apps/microblogging/views.py:131
+#: apps/microblogging/views.py:122
 #, fuzzy, python-format
 msgid "You have stopped following %(other_user)s"
 msgstr "Vous êtes « « ami » avec %(other_user_display)s."

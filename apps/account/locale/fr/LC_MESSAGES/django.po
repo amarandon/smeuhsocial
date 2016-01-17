@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: v1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-10 22:27+0200\n"
+"POT-Creation-Date: 2015-05-24 21:51+0200\n"
 "PO-Revision-Date: 2010-03-01 14:22+0100\n"
 "Last-Translator: James Pic <http://jamespic.com/     >\n"
 "Language-Team: Pinax Team <http://www.transifex.net/projects/p/pinax/team/fr/"
@@ -19,50 +19,49 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/account/forms.py:47 apps/account/forms.py:121
-#: apps/account/forms.py:357 apps/account/forms.py:481
+#: apps/account/forms.py:43 apps/account/forms.py:120
+#: apps/account/forms.py:369
 msgid "Password"
 msgstr "Mot de passe"
 
-#: apps/account/forms.py:51
+#: apps/account/forms.py:47
 msgid "Remember Me"
 msgstr "Se souvenir de moi"
 
-#: apps/account/forms.py:52
+#: apps/account/forms.py:48
 msgid "If checked you will stay logged in for 3 weeks"
 msgstr "Si cette case est cochée vous resterez connecté pour 3 semaines "
 
-#: apps/account/forms.py:63 apps/account/forms.py:138
-#: apps/account/forms.py:293 apps/account/forms.py:379
+#: apps/account/forms.py:59 apps/account/forms.py:137
+#: apps/account/forms.py:303 apps/account/forms.py:392
 msgid "E-mail"
 msgstr "Courriel"
 
-#: apps/account/forms.py:68 apps/account/forms.py:116
-#: apps/account/forms.py:479
+#: apps/account/forms.py:64 apps/account/forms.py:115
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: apps/account/forms.py:96
+#: apps/account/forms.py:93
 msgid "This account is currently inactive."
 msgstr "Ce compte est actuellement inactif."
 
-#: apps/account/forms.py:99
+#: apps/account/forms.py:97
 msgid "The e-mail address and/or password you specified are not correct."
 msgstr ""
 "Le nom d'utilisateur et/ou le mot de passe que vous avez spécifié est "
 "incorrect."
 
-#: apps/account/forms.py:101
+#: apps/account/forms.py:100
 msgid "The username and/or password you specified are not correct."
 msgstr ""
 "Le nom d'utilisateur et/ou le mot de passe que vous avez spécifié est "
 "incorrect."
 
-#: apps/account/forms.py:125 apps/account/forms.py:361
+#: apps/account/forms.py:124 apps/account/forms.py:373
 msgid "Password (again)"
 msgstr "Mot de passe (encore)"
 
-#: apps/account/forms.py:141
+#: apps/account/forms.py:140
 msgid "E-mail (optional)"
 msgstr "Courriel (optionel)"
 
@@ -72,148 +71,142 @@ msgstr ""
 "Les noms d'utilisateur ne peuvent contenir que des lettres, des chiffres ou "
 "des caractères de soulignement."
 
-#: apps/account/forms.py:151
+#: apps/account/forms.py:153
 msgid "This username is already taken. Please choose another."
 msgstr ""
 "Ce nom d'utilisateur est déjà pris. Choisissez-en un autre s'il vous plaît."
 
-#: apps/account/forms.py:160
+#: apps/account/forms.py:163
 msgid "A user is registered with this e-mail address."
 msgstr "Un utilisateur est déjà inscrit avec cette adresse email"
 
-#: apps/account/forms.py:166 apps/account/forms.py:346
-#: apps/account/forms.py:368 apps/account/forms.py:436
+#: apps/account/forms.py:170 apps/account/forms.py:358
+#: apps/account/forms.py:381 apps/account/forms.py:453
 msgid "You must type the same password each time."
 msgstr "Vous devez saisir le même mot de passe chaque fois."
 
-#: apps/account/forms.py:214
+#: apps/account/forms.py:223
 #, fuzzy
 msgid "Your e-mail address has already been verified"
 msgstr "Votre adresse de courriel a déjà été vérifiée"
 
-#: apps/account/forms.py:224 apps/account/forms.py:234
+#: apps/account/forms.py:235 apps/account/forms.py:245
 #, fuzzy, python-format
 msgid "Confirmation e-mail sent to %(email)s"
 msgstr "Courriel de confirmation envoyé à %(email)s"
 
-#: apps/account/forms.py:301
+#: apps/account/forms.py:311
 msgid "This e-mail address already associated with this account."
 msgstr "Cette adresse de courriel est déjà associée avec ce compte."
 
-#: apps/account/forms.py:302
+#: apps/account/forms.py:312
 msgid "This e-mail address already associated with another account."
 msgstr "Cette adresse de courriel est déjà associée avec un autre compte."
 
-#: apps/account/forms.py:326
+#: apps/account/forms.py:336
 msgid "Current Password"
 msgstr "Mot de passe actuel"
 
-#: apps/account/forms.py:330 apps/account/forms.py:420
+#: apps/account/forms.py:340 apps/account/forms.py:436
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: apps/account/forms.py:334 apps/account/forms.py:424
+#: apps/account/forms.py:344 apps/account/forms.py:440
 msgid "New Password (again)"
 msgstr "Nouveau mot de passe (encore)"
 
-#: apps/account/forms.py:340
+#: apps/account/forms.py:351
 msgid "Please type your current password."
 msgstr "Saisissez votre mot de passe actuel s'il vous plaît."
 
-#: apps/account/forms.py:386
+#: apps/account/forms.py:400
 #, fuzzy
 msgid "E-mail address not verified for any user account"
 msgstr "Adresse courriel non vérifiée pour aucun compte utilisateur"
 
-#: apps/account/forms.py:406
+#: apps/account/forms.py:421
 #, fuzzy
 msgid "Password reset e-mail sent"
 msgstr "Email de réinitialisation du mot de passe envoyé"
 
-#: apps/account/forms.py:450
+#: apps/account/forms.py:467
 msgid "Timezone"
 msgstr "Fuseau horaire"
 
-#: apps/account/forms.py:464
+#: apps/account/forms.py:481
 msgid "Language"
 msgstr "Langue"
 
-#: apps/account/models.py:20 apps/account/models.py:37
-#: apps/account/models.py:116
+#: apps/account/models.py:19 apps/account/models.py:75
 msgid "user"
 msgstr "utilisateur"
 
-#: apps/account/models.py:22
+#: apps/account/models.py:21
 msgid "timezone"
 msgstr "fuseau horaire"
 
-#: apps/account/models.py:23
+#: apps/account/models.py:22
 msgid "language"
 msgstr "langue"
 
-#: apps/account/models.py:38
-msgid "Other Service Info Key"
-msgstr "Clef d'info de l'autre service"
-
-#: apps/account/models.py:39
-msgid "Other Service Info Value"
-msgstr "Valeur de l'info de l'autre service"
-
-#: apps/account/models.py:118
+#: apps/account/models.py:77
 msgid "temp_key"
 msgstr "modèle"
 
-#: apps/account/models.py:119
+#: apps/account/models.py:78
 msgid "timestamp"
 msgstr "Horodatage"
 
-#: apps/account/models.py:120
+#: apps/account/models.py:79
 msgid "reset yet?"
 msgstr "déjà rédéfini?"
 
-#: apps/account/openid_consumer.py:124 apps/account/views.py:96
-#: apps/account/views.py:151
+#: apps/account/openid_consumer.py:124 apps/account/views.py:92
+#: apps/account/views.py:152
 #, python-format
 msgid "Successfully logged in as %(user)s."
 msgstr "Connecté en temps que %(user)s avec succès."
 
-#: apps/account/views.py:182 apps/account/views.py:197
+#: apps/account/views.py:185 apps/account/views.py:200
 #, python-format
 msgid "Confirmation email sent to %(email)s"
 msgstr "Courriel de confirmation envoyé à %(email)s"
 
-#: apps/account/views.py:213
+#: apps/account/views.py:216
 #, python-format
 msgid "Removed email address %(email)s"
 msgstr "Adresse email retirée %(email)s"
 
-#: apps/account/views.py:253 apps/account/views.py:381
+#: apps/account/views.py:255 apps/account/views.py:387
 msgid "Password successfully changed."
 msgstr "Mot de passe changé avec succès."
 
-#: apps/account/views.py:283
+#: apps/account/views.py:285
 msgid "Password successfully set."
 msgstr "Mot de passe changé avec succès."
 
-#: apps/account/views.py:410
+#: apps/account/views.py:417
 msgid "Timezone successfully updated."
 msgstr "Fuseau horaire mis à jour avec succès."
 
-#: apps/account/views.py:436
+#: apps/account/views.py:441
 msgid "Language successfully updated."
 msgstr "Langue mise à jour avec succès."
 
-#: apps/account/views.py:474
-msgid "Twitter authentication failed"
-msgstr "Echec de l'authentification sur Twitter"
+#~ msgid "Other Service Info Key"
+#~ msgstr "Clef d'info de l'autre service"
 
-#: apps/account/views.py:479
-msgid "Successfully authenticated."
-msgstr "Authentifié avec succès."
+#~ msgid "Other Service Info Value"
+#~ msgstr "Valeur de l'info de l'autre service"
 
-#: apps/account/views.py:507
-msgid "Removed twitter account information successfully."
-msgstr "Informations de connection au compte twitter effacées."
+#~ msgid "Twitter authentication failed"
+#~ msgstr "Echec de l'authentification sur Twitter"
+
+#~ msgid "Successfully authenticated."
+#~ msgstr "Authentifié avec succès."
+
+#~ msgid "Removed twitter account information successfully."
+#~ msgstr "Informations de connection au compte twitter effacées."
 
 #~ msgid "Email"
 #~ msgstr "Courriel"
