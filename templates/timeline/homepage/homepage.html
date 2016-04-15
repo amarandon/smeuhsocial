@@ -68,7 +68,7 @@
 				</div>
 				{% endif %}
 			{% endblock %}
-			<div class="col-xs-12 col-sm-12 col-md-{% if latest_blogs %}6{% else %}12{% endif %}">
+			<div class="homepage-tracks col-xs-12 col-sm-12 col-md-{% if latest_blogs %}6{% else %}12{% endif %}">
 				{% if latest_tracks %}
 				<h4>
 			 		<a title="Atom Feed" href="{% url 'tracks_feed' %}">
@@ -89,7 +89,7 @@
 				{% endblock %}			  				 
 			</div>
 				
-				<div class="col-xs-12 col-sm-12 col-md-{% if latest_tracks %}6{% else %}12{% endif %}">
+				<div class="homepage-blogs col-xs-12 col-sm-12 col-md-{% if latest_tracks %}6{% else %}12{% endif %}">
 				{% if latest_blogs %} 				
 				<h4>
 		   			<a title="Atom Feed" href="{% url 'all_blogs_feed' %}">
