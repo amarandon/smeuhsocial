@@ -240,7 +240,7 @@ select,textarea,input[type="text"],input[type="password"],input[type="datetime"]
 }
 
 .timeline-thumb {
-	margin: 3px 5px 0 3px;
+	margin: 2.5px 5px 0 3px;
 	max-height: 96px;
 }
 
@@ -478,4 +478,14 @@ a.badge:hover {
 	font-weight: bold;
 	color: #f1592a;
 	font-size: 24px
+}
+
+.homepage-tracks {
+  padding-left: 0;
+}
+
+@media (max-width: 991px) {
+  .homepage-blogs {
+    padding-left: 0;
+  }
 }
