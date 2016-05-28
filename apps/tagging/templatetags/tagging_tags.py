@@ -1,6 +1,6 @@
 import re
 
-from django.db.models import get_model
+from django.apps import apps
 from django.template import Library, Node, TemplateSyntaxError, Variable
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
@@ -12,6 +12,13 @@ from ..utils import LINEAR, LOGARITHMIC
 register = Library()
 
 tag_ref_re = re.compile("(^|\s)#(\S+)")
+
+
+def get_model(app_name, model_name):
+    app_config = apps.get_app_config(app_name)
+    return app_config.get_model(model_name)
+
+
 
 class TagsForModelNode(Node):
     def __init__(self, model, context_var, counts):
