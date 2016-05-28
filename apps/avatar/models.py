@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.utils.translation import ugettext as _
+from django.db.models import signals
+from django.conf import settings
 
 try:
     from cStringIO import StringIO
@@ -17,6 +19,7 @@ except ImportError:
     import Image
 
 from avatar import AVATAR_STORAGE_DIR, AVATAR_RESIZE_METHOD
+AUTO_GENERATE_AVATAR_SIZES = getattr(settings, 'AUTO_GENERATE_AVATAR_SIZES', (80,))
 
 def avatar_file_path(instance=None, filename=None, user=None):
     user = user or instance.user
@@ -75,3 +78,10 @@ class Avatar(models.Model):
     def avatar_name(self, size):
         return os.path.join(AVATAR_STORAGE_DIR, self.user.username,
             'resized', str(size), self.avatar.name)
+
+
+def create_default_thumbnails(instance=None, created=False, **kwargs):
+    if created:
+        for size in AUTO_GENERATE_AVATAR_SIZES:
+            instance.create_thumbnail(size)
+signals.post_save.connect(create_default_thumbnails, sender=Avatar)
