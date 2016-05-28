@@ -30,7 +30,7 @@ Pillow
 python-ldap
 django-auth-ldap==1.2.2
 versiontools
-django_compressor==1.4
+django_compressor==2.0
 fabric
 django-bootstrap
 psycopg2
