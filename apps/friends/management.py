@@ -14,6 +14,7 @@ if "notification" in settings.INSTALLED_APPS:
         notification.create_notice_type("friends_otherconnect", _("Other Connection"), _("one of your friends has a new connection"), default=2)
         notification.create_notice_type("join_accept", _("Join Invitation Accepted"), _("an invitation you sent to join this site has been accepted"), default=2)
     
-    signals.post_syncdb.connect(create_notice_types, sender=notification)
+    # FIXME removed from django 1.9
+    # signals.post_syncdb.connect(create_notice_types, sender=notification)
 else:
     print "Skipping creation of NoticeTypes as notification app not found"
