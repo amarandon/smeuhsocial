@@ -780,7 +780,7 @@ class ViewsTestCase(TestCase):
         user.save()
 
         response = self.client.post(url, {'next': '/'})
-        self.assertEquals(response['Location'], 'http://testserver/')
+        self.assertEquals(response['Location'], '/')
         self.assertRaises(
             FreeThreadedComment.DoesNotExist,
             lambda: FreeThreadedComment.objects.get(id=deleted_id)
@@ -832,7 +832,7 @@ class ViewsTestCase(TestCase):
         user.save()
 
         response = self.client.post(url, {'next': '/'})
-        self.assertEquals(response['Location'], 'http://testserver/')
+        self.assertEquals(response['Location'], '/')
         self.assertRaises(
             ThreadedComment.DoesNotExist,
             lambda: ThreadedComment.objects.get(id=deleted_id)
