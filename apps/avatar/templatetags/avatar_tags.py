@@ -4,6 +4,7 @@ import hashlib
 from django import template
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
+from django.utils.html import format_html
 
 from avatar import AVATAR_DEFAULT_URL, AVATAR_GRAVATAR_BACKUP
 from avatar import AVATAR_GRAVATAR_DEFAULT
@@ -54,8 +55,8 @@ def avatar(user, size=80):
     else:
         alt = unicode(user)
         url = avatar_url(user, size)
-    return """<img src="%s" alt="%s" width="%s" height="%s" class="img-rounded"/>""" % (url, alt,
-        size, size)
+    return format_html('<img src="{}" alt="{}" width="{}" height="{}" class="img-rounded"/>',
+                       url, alt, size, size)
 register.simple_tag(avatar)
 
 

@@ -20,6 +20,13 @@ class TestAvatar(BaseImageTest):
         }, follow=True)
         self.assertContains(resp, 'Successfully updated')
 
+    def test_avatar_html(self):
+        resp = self.client.get('/avatar/change/')
+        self.assertContains(
+            resp,
+            '<img src="/media/static/pinax/img/avatar-defaut.png" '
+            'alt="bob" width="80" height="80" class="img-rounded"/>')
+
     def test_delete_avatar(self):
         self.upload_avatar()
         resp = self.client.post('/avatar/delete/', {
