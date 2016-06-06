@@ -3,7 +3,6 @@
 {% load i18n %}
 {% load avatar_tags %}
 {% load override_tags %}
-{% load cycle from future %}
 <div class="tweet-item homepage-item {% if forloop.first %} first{% endif %}{% cycle ' odd' '' %} {{ extra_classes }} clearfix">
   <div class="clearfix tweet" id="{% if tli_index %}tli_{{ tli_index }}{% else %}t{{ tweet.id }}{% endif %}">
     <span class="timesince pull-right">{% blocktrans with tweet.sent|timesince as tweet_age %}{{ tweet_age }} ago{% endblocktrans %}</span>

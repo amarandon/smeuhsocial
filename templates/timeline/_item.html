@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load override_tags %}
 {% load avatar_tags %}
-{% load cycle from future %}
 
 <div class="timeline-item homepage-item {% if forloop.first %} first{% endif %}{% cycle ' odd' '' %} clearfix">
   <div class="clearfix {% if forloop.last %}last{% endif %}">
