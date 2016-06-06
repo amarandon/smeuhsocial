@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.db.models import signals
 from django.utils.translation import ugettext_noop as _
+from django.apps import apps
 
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
+    notification_appconfig = apps.get_app_config('notification')
     
-    def create_notice_types(app, created_models, verbosity, **kwargs):
+    def create_notice_types(*args, **kwargs):
         notification.create_notice_type("friends_invite", _("Invitation Received"), _("you have received an invitation"), default=2)
         notification.create_notice_type("friends_invite_sent", _("Invitation Sent"), _("you have sent an invitation"), default=1)
         notification.create_notice_type("friends_accept", _("Acceptance Received"), _("an invitation you sent has been accepted"), default=2)
@@ -14,7 +16,6 @@ if "notification" in settings.INSTALLED_APPS:
         notification.create_notice_type("friends_otherconnect", _("Other Connection"), _("one of your friends has a new connection"), default=2)
         notification.create_notice_type("join_accept", _("Join Invitation Accepted"), _("an invitation you sent to join this site has been accepted"), default=2)
     
-    # FIXME removed from django 1.9
-    # signals.post_syncdb.connect(create_notice_types, sender=notification)
+    signals.post_migrate.connect(create_notice_types, sender=notification_appconfig)
 else:
     print "Skipping creation of NoticeTypes as notification app not found"
