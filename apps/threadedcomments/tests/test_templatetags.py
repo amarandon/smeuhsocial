@@ -5,7 +5,7 @@ from xml.dom.minidom import parseString
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.template import Context, Template
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
@@ -18,8 +18,8 @@ from threadedcomments.templatetags import threadedcommentstags as tags
 __all__ = ("TemplateTagTestCase",)
 
 
+@override_settings(ROOT_URLCONF="threadedcomments.urls")
 class TemplateTagTestCase(TestCase):
-    urls = "threadedcomments.urls"
     
     def test_get_comment_url(self):
         
