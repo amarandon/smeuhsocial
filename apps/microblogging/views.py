@@ -1,10 +1,9 @@
 import json
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -48,13 +47,13 @@ def personal(request, form_class=TweetForm,
         else:
             form.fields['text'].initial = u""
     tweets = TweetInstance.objects.tweets_for(request.user).order_by("-sent")
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "form": form,
         "reply": reply,
         "tweets": tweets,
         "following_list": following_list,
         "followers_list": followers_list
-    }, context_instance=RequestContext(request))
+    })
 personal = login_required(personal)
 
 @login_required
@@ -66,10 +65,11 @@ def post_tweet(request, form_class=TweetForm, success_url=None):
             tweet = form.save()
             parse_tagged_text(text, tweet.id, 'tweet')
             if request.is_ajax():
-                return render_to_response('microblogging/_tweet.html', {
+                return render(request, 'microblogging/_tweet.html', {
                     'tweet': tweet,
                     'prefix_sender': True ,
-                    'extra_classes':  "fisrt odd"})
+                    'extra_classes':  "fisrt odd",
+                })
         else:
             data = json.dumps(dict([(k, [unicode(e) for e in v]) for k,v in form.errors.items()]))
             return HttpResponseBadRequest(data, content_type='application/json')
@@ -85,11 +85,11 @@ def public(request, template_name="microblogging/public.html"):
     tweets = Tweet.objects.all().order_by("-sent")
     following_list, followers_list = get_following_followers_lists(request.user)
 
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "tweets": tweets,
         "following_list": following_list,
         "followers_list": followers_list
-    }, context_instance=RequestContext(request))
+    })
 
 @login_required
 def single(request, id, template_name="microblogging/single.html"):
@@ -97,9 +97,9 @@ def single(request, id, template_name="microblogging/single.html"):
     A single tweet.
     """
     tweet = get_object_or_404(Tweet, id=id)
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "tweet": tweet,
-    }, context_instance=RequestContext(request))
+    })
 
 @login_required
 def toggle_follow(request, username):
