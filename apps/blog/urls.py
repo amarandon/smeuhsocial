@@ -1,35 +1,42 @@
-from django.conf.urls import *
+from django.conf.urls import url
 
-from blog import views, models
-from blog.forms import *
+from blog import views
+from blog.forms import BlogForm
+from ajax_validation.views import validate
 
 
-
-urlpatterns = patterns("",
-    # blog post
-    url(r"^post/(?P<username>[-\w]+)/(?P<year>\d{4})/(?P<month>\d{2})/(?P<slug>[-\w]+)/$", "blog.views.post", name="blog_post"),
-    
+urlpatterns = [
     # all blog posts
-    url(r"^$", "blog.views.blogs", name="blog_list_all"),
-    
+    url(r"^blogs/?$", views.blogs,
+        name="blog_list_all"),
+
+    # blog post
+    url(r"^(?P<username>[-\w]+)/blog/(?P<slug>[-\w]+)/source/?$",
+        views.blog_post_source, name="blog_post_source"),
+    url(r"^(?P<username>[-\w]+)/blog/(?P<slug>[-\w]+)/?$",
+        views.post, name="blog_post"),
+
     # blog post for user
-    url(r"^posts/(?P<username>\w+)/$", "blog.views.blogs", name="blog_list_user"),
-    
+    url(r"^(?P<username>\w+)/blog/?$",
+        views.user_blog_index, name="blog_list_user"),
+
     # your posts
-    url(r"^your_posts/$", "blog.views.your_posts", name="blog_list_yours"),
-    
+    url(r"^blogs/your_posts/?$",
+        views.your_posts, name="blog_list_yours"),
+
     # new blog post
-    url(r"^new/$", "blog.views.new", name="blog_new"),
-    
+    url(r"^blogs/new/$", views.new, name="blog_new"),
+
     # edit blog post
-    url(r"^edit/(\d+)/$", "blog.views.edit", name="blog_edit"),
-    
-    #destory blog post
-    url(r"^destroy/(\d+)/$", "blog.views.destroy", name="blog_destroy"),
-    
+    url(r"^blogs/edit/(\d+)/$", views.edit, name="blog_edit"),
+
+    # destory blog post
+    url(r"^blogs/destroy/(\d+)/$",
+        views.destroy, name="blog_destroy"),
+
     # ajax validation
-    (r"^validate/$", "ajax_validation.views.validate", {
+    url(r"^blogs/validate/$", validate, {
         "form_class": BlogForm,
         "callback": lambda request, *args, **kwargs: {"user": request.user}
-    }, "blog_form_validate"),
-)
+        }, name="blog_form_validate"),
+]

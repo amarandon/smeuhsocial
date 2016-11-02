@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+from . import views
 
-from timeline.views import TimeLineView, HomePageView
 
-urlpatterns = patterns("",
+urlpatterns = [
     # all items
-    url(r"^$", "fukung.views.index", name="fukung"),
-    url(r"^v/(?P<photo_id>\d+)/$", "fukung.views.view", name="fukung_view"),
-)
+    url(r"^$", views.index, name="fukung"),
+    url(r"^v/(?P<photo_id>\d+)/$", views.view, name="fukung_view"),
+]

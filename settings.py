@@ -191,7 +191,6 @@ INSTALLED_APPS = [
     "apps.threadedcomments_extras",
     
     # project
-    "about",
     "audiotracks",
     "smeuhoverride",
     "timeline",

@@ -1,8 +1,7 @@
-from django.conf.urls import patterns, url
-from django.contrib.auth.decorators import login_required
+from django.conf.urls import url
+from . import views
 
-urlpatterns = patterns("",
-    # all items
-    url(r"^$", "artist.views.index", name="artist_index"),
-    url(r"^(?P<name>.+)/$", "artist.views.artist", name="artist_tracks"),   
-)
+urlpatterns = [
+    url(r"^$", views.index, name="artist_index"),
+    url(r"^(?P<name>.+)/$", views.artist, name="artist_tracks"),
+]

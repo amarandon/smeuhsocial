@@ -1,11 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from threadedcomments.models import FreeThreadedComment
 from threadedcomments import views
 
 free = {'model': FreeThreadedComment}
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     ### Comments ###
     url(r'^comment/(?P<content_type>\d+)/(?P<object_id>\d+)/$',
         views.comment, name="tc_comment"),
@@ -41,4 +40,4 @@ urlpatterns = patterns(
         views.free_comment, name="tc_free_comment_parent_ajax"),
     url(r'^freecomment/(?P<edit_id>\d+)/edit/(?P<ajax>json|xml)/$',
         views.free_comment, name="tc_free_comment_edit_ajax"),
-)
+]

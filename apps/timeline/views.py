@@ -463,7 +463,8 @@ class UserHomePageView(TemplateView):
                 except FriendshipInvitation.DoesNotExist:
                     pass
 
-        return HttpResponseRedirect(reverse("timeline.views.user_home", kwargs={"username": username}))
+        return HttpResponseRedirect(reverse("profile_detail",
+                                            kwargs={"username": username}))
 
 class TagPageView(TemplateView):
 

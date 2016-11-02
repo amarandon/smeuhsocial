@@ -74,7 +74,7 @@ def post_tweet(request, form_class=TweetForm, success_url=None):
             data = json.dumps(dict([(k, [unicode(e) for e in v]) for k,v in form.errors.items()]))
             return HttpResponseBadRequest(data, content_type='application/json')
     if success_url is None:
-        success_url = reverse('timeline.views.home')
+        success_url = reverse('home')
     return HttpResponseRedirect(success_url)
 
 @login_required

@@ -145,3 +145,24 @@ def edit(request, id, form_class=BlogForm, template_name="blog/edit.html"):
         "blog_form": blog_form,
         "post": post,
     }, context_instance=RequestContext(request))
+
+
+def user_blog_index(request, username, template_name="blog/user_blog.html"):
+    blogs = Post.objects.filter(status=2).select_related().order_by("-publish")
+    if username is not None:
+        user = get_object_or_404(User, username=username.lower())
+        blogs = blogs.filter(author=user)
+    return render_to_response(template_name, {
+        "blogs": blogs,
+        "username": username,
+    }, context_instance=RequestContext(request))
+
+
+def blog_post_source(request, username, slug):
+    post = get_object_or_404(Post, slug=slug,
+                             author__username=username)
+
+    if post.status == 1 and post.author != request.user:
+        raise Http404
+
+    return HttpResponse(post.body, content_type="text/plain; charset=utf-8")
