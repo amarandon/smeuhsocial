@@ -11,14 +11,14 @@ from django.contrib.auth.models import User, AnonymousUser
 
 from emailconfirmation.models import EmailAddress, EmailConfirmation
 from emailconfirmation.signals import email_confirmed
-from timezones.fields import TimeZoneField
+from timezone_field import TimeZoneField
 
 
 class Account(models.Model):
 
     user = models.OneToOneField(User, verbose_name=_("user"))
 
-    timezone = TimeZoneField(_("timezone"))
+    timezone = TimeZoneField(verbose_name=_("timezone"))
     language = models.CharField(_("language"),
                                 max_length=10,
                                 choices=settings.LANGUAGES,

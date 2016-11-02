@@ -14,7 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.models import Site
 
 from emailconfirmation.models import EmailAddress
-from timezones.forms import TimeZoneField
+from timezone_field import TimeZoneFormField
 
 from account.models import Account, PasswordReset
 from account.utils import perform_login
@@ -464,7 +464,7 @@ class ResetPasswordKeyForm(forms.Form):
 
 class ChangeTimezoneForm(AccountForm):
 
-    timezone = TimeZoneField(label=_("Timezone"), required=True)
+    timezone = TimeZoneFormField(label=_("Timezone"), required=True)
 
     def __init__(self, *args, **kwargs):
         super(ChangeTimezoneForm, self).__init__(*args, **kwargs)

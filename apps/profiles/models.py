@@ -5,12 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
 
-from timezones.fields import TimeZoneField
-
-
 
 class Profile(models.Model):
-    
     user = models.OneToOneField(User, verbose_name=_("user"))
     name = models.CharField(_("name"), max_length=50, null=True, blank=True)
     about = models.TextField(_("about"), null=True, blank=True)

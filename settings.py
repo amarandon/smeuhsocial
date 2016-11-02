@@ -165,7 +165,7 @@ INSTALLED_APPS = [
     "uni_form",
     "django_openid",
     "ajax_validation",
-    "timezones",
+    "timezone_field",
     "emailconfirmation",
     "pagination",
     "friends",
