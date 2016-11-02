@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext, Context, Template
+from django.shortcuts import get_object_or_404, render
+from django.template import Context, Template
 from django.utils.http import urlquote
 from django.conf import settings
 from threadedcomments.forms import FreeThreadedCommentForm, ThreadedCommentForm
@@ -61,10 +61,11 @@ def _preview(request, context_processors, extra_context,
         context['comment'] = new_comment
     else:
         context['comment'] = None
-    return render_to_response(
+    context.update(extra_context)
+    return render(
+        request,
         'threadedcomments/preview_comment.html',
-        extra_context,
-        context_instance=RequestContext(request, context, context_processors)
+        context,
     )
 
 
@@ -200,17 +201,11 @@ def comment_delete(request, object_id, model=ThreadedComment, extra_context={},
         else:
             is_free_threaded_comment = True
             is_threaded_comment = False
-        return render_to_response(
-            'threadedcomments/confirm_delete.html',
-            extra_context,
-            context_instance=RequestContext(
-                request,
-                {
-                    'comment': tc,
-                    'is_free_threaded_comment': is_free_threaded_comment,
-                    'is_threaded_comment': is_threaded_comment,
-                    'next': _get_next(request),
-                },
-                context_processors
-            )
-        )
+        context = {
+            'comment': tc,
+            'is_free_threaded_comment': is_free_threaded_comment,
+            'is_threaded_comment': is_threaded_comment,
+            'next': _get_next(request),
+        }
+        context.update(extra_context)
+        return render(request, 'threadedcomments/confirm_delete.html', context)
