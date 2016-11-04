@@ -1,3 +1,4 @@
+# coding: utf-8
 from smeuhoverride.tests import BaseTestCase
 from django.contrib.contenttypes.models import ContentType
 from blog.models import Post
@@ -39,11 +40,7 @@ class TestBlog(BaseTestCase):
             "comment": long_comment,
             "next": "/bob/blog/the-slug",
         })
-
-        self.assertEqual(
-            response['location'],
-            "http://testserver/bob/blog/the-slug#comment_1"
-        )
+        self.assertIn("/bob/blog/the-slug#comment_", response['location'])
 
     def test_comment_post_too_long(self):
         post = self.create_post()
