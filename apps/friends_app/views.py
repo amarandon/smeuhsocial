@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 
 from django.contrib import messages
@@ -52,11 +52,11 @@ def friends(request, template_name="friends_app/invitations.html"):
     invites_sent = request.user.invitations_from.invitations().order_by("-sent")
     joins_sent = request.user.join_from.all().order_by("-sent")
     
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "invites_received": invites_received,
         "invites_sent": invites_sent,
         "joins_sent": joins_sent,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -76,25 +76,24 @@ def invite(request, form_class=JoinRequestForm, **kwargs):
             messages.success(request, _("Invitation to join sent to %s" %
                 join_request_form.cleaned_data['email']))
             return HttpResponseRedirect(reverse("invitations"))
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "join_request_form": join_request_form,
-        }, context_instance=RequestContext(request))
+        })
 
 
 def accept_join(request, confirmation_key, form_class=SignupForm,
         template_name="account/signup.html"):
     join_invitation = get_object_or_404(JoinInvitation, confirmation_key=confirmation_key.lower())
     if request.user.is_authenticated():
-        return render_to_response("account/signup.html", {
-        }, context_instance=RequestContext(request))
+        return render(request, "account/signup.html", {})
     else:
         form = form_class(initial={
             "email": join_invitation.contact.email,
             "confirmation_key": join_invitation.confirmation_key
         })
-        return render_to_response(template_name, {
+        return render(request, template_name, {
             "form": form,
-        }, context_instance=RequestContext(request))
+        })
 
 
 @login_required
@@ -115,9 +114,9 @@ def contacts(request, form_class=ImportVCardForm,
     else:
         import_vcard_form = form_class()
     
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "import_vcard_form": import_vcard_form,
-    }, context_instance=RequestContext(request))
+    })
 
 
 @login_required
@@ -146,4 +145,4 @@ def friends_objects(request, template_name, friends_objects_function, extra_cont
     for name, func in extra_context.items():
         dictionary[name] = func(request)
     
-    return render_to_response(template_name, dictionary, context_instance=RequestContext(request))
+    return render(request, template_name, dictionary)

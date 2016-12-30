@@ -1,7 +1,7 @@
 from avatar.models import Avatar, avatar_file_path
 from avatar.forms import PrimaryAvatarForm, DeleteAvatarForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -66,17 +66,15 @@ def change(request, extra_context={}, next_override=None):
             messages.success(request,
                 message=_("Successfully updated your avatar."))
         return HttpResponseRedirect(next_override or _get_next(request))
-    return render_to_response(
-        'avatar/change.html',
-        extra_context,
-        context_instance = RequestContext(
-            request,
-            { 'avatar': avatar, 
-              'avatars': avatars,
-              'primary_avatar_form': primary_avatar_form,
-              'next': next_override or _get_next(request), }
-        )
-    )
+    context = {
+        'avatar': avatar, 
+        'avatars': avatars,
+        'primary_avatar_form': primary_avatar_form,
+        'next': next_override or _get_next(request), 
+    }
+    context.update(extra_context)
+    return render(request, 'avatar/change.html', context)
+
 change = login_required(change)
 
 def delete(request, extra_context={}, next_override=None):
@@ -99,15 +97,13 @@ def delete(request, extra_context={}, next_override=None):
             messages.success(request,
                 message=_("Successfully deleted the requested avatars."))
             return HttpResponseRedirect(next_override or _get_next(request))
-    return render_to_response(
-        'avatar/confirm_delete.html',
-        extra_context,
-        context_instance = RequestContext(
-            request,
-            { 'avatar': avatar, 
-              'avatars': avatars,
-              'delete_avatar_form': delete_avatar_form,
-              'next': next_override or _get_next(request), }
-        )
-    )
+    context = {
+        'avatar': avatar, 
+        'avatars': avatars,
+        'delete_avatar_form': delete_avatar_form,
+        'next': next_override or _get_next(request), 
+    }
+    context.update(extra_context)
+
+    return render(request, 'avatar/confirm_delete.html', context)
 delete = login_required(delete)

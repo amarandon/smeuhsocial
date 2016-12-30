@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
@@ -41,11 +41,11 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
         users = users.order_by("-date_joined")
     elif order == "name":
         users = users.order_by("username")
-    return render_to_response(template_name, dict({
+    return render(request, template_name, dict({
         "users": users,
         "order": order,
         "search_terms": search_terms,
-    }, **extra_context), context_instance=RequestContext(request))
+    }, **extra_context))
 
 
 def profile(request, username, template_name="profiles/profile.html", extra_context=None):
@@ -139,7 +139,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
             previous_invitations_to = None
             previous_invitations_from = None
     
-    return render_to_response(template_name, dict({
+    return render(request, template_name, dict({
         "is_me": is_me,
         "is_friend": is_friend,
         "is_following": is_following,
@@ -148,7 +148,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         "invite_form": invite_form,
         "previous_invitations_to": previous_invitations_to,
         "previous_invitations_from": previous_invitations_from,
-    }, **extra_context), context_instance=RequestContext(request))
+    }, **extra_context))
 
 
 @login_required
@@ -175,7 +175,7 @@ def profile_edit(request, form_class=ProfileForm, **kwargs):
     else:
         profile_form = form_class(instance=profile)
     
-    return render_to_response(template_name, {
+    return render(request, template_name, {
         "profile": profile,
         "profile_form": profile_form,
-    }, context_instance=RequestContext(request))
+    })
