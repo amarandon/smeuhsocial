@@ -357,7 +357,7 @@ class LatestCommentsNode(template.Node):
             comments = FreeThreadedComment.objects.order_by('-date_submitted')[:self.num]
         else:
             comments = ThreadedComment.objects.order_by('-date_submitted')[:self.num]
-        context[self.context_name] = comments
+        context[self.context_name] = list(comments)
         return ''
 
 def do_get_user_comments(parser, token):
@@ -379,7 +379,7 @@ class UserCommentsNode(template.Node):
         self.context_name = context_name
     def render(self, context):
         user = self.user.resolve(context)
-        context[self.context_name] = user.threadedcomment_set.all()
+        context[self.context_name] = list(user.threadedcomment_set.all())
         return ''
 
 def do_get_user_comment_count(parser, token):
