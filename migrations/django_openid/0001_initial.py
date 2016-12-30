@@ -33,13 +33,4 @@ class Migration(migrations.Migration):
                 ('salt', models.CharField(max_length=40)),
             ],
         ),
-        migrations.CreateModel(
-            name='UserOpenidAssociation',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('openid', models.CharField(max_length=255)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('user', models.ForeignKey(related_name='openids', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
     ]

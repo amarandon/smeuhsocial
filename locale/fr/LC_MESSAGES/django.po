@@ -812,12 +812,6 @@ msgstr "Changer de mot de passe"
 msgid "Set Password"
 msgstr "Définir le mot de passe"
 
-#: templates/account/base.html:19 templates/account/password_delete.html:5
-#: templates/account/password_delete.html:9
-#, fuzzy
-msgid "Delete Password"
-msgstr "Définir le mot de passe"
-
 #: templates/account/base.html:21 templates/account/language_change.html:6
 #: templates/account/language_change.html:10
 msgid "Language"
@@ -973,26 +967,6 @@ msgstr "sauvegarder"
 #| msgid "Change Password"
 msgid "change password"
 msgstr "Changer de mot de passe"
-
-#: templates/account/password_delete.html:10
-msgid ""
-"You may delete your password since you are currently logged in using OpenID."
-msgstr ""
-
-#: templates/account/password_delete.html:13
-#, fuzzy
-msgid "delete my password"
-msgstr "Définir le mot de passe"
-
-#: templates/account/password_delete_done.html:5
-#: templates/account/password_delete_done.html:9
-#, fuzzy
-msgid "Password Deleted"
-msgstr "Définir le mot de passe"
-
-#: templates/account/password_delete_done.html:10
-msgid "Your password has been deleted."
-msgstr ""
 
 #: templates/account/password_reset.html:7
 #: templates/account/password_reset.html:11

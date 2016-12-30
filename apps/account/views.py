@@ -15,10 +15,6 @@ from django.apps import apps
 
 from emailconfirmation.models import EmailAddress, EmailConfirmation
 
-association_model = apps.get_app_config(
-    "django_openid").get_model("Association")
-if association_model is not None:
-    from django_openid.models import UserOpenidAssociation
 
 from account.utils import get_default_redirect, user_display
 from account.forms import AddEmailForm, ChangeLanguageForm, ChangePasswordForm
@@ -59,8 +55,6 @@ def login(request, **kwargs):
     success_url = (request.GET.get("success_url")
                    or request.POST.get("success_url")
                    or kwargs.pop("success_url", None))
-    associate_openid = kwargs.pop("associate_openid", False)
-    openid_success_url = kwargs.pop("openid_success_url", None)
     url_required = kwargs.pop("url_required", False)
     extra_context = kwargs.pop("extra_context", {})
     redirect_field_name = kwargs.pop("redirect_field_name", "next")
@@ -81,12 +75,6 @@ def login(request, **kwargs):
         form = form_class(request.POST, group=group)
         if form.is_valid():
             form.login(request)
-            if associate_openid and association_model is not None:
-                for openid in request.session.get("openids", []):
-                    assoc, created = UserOpenidAssociation.objects.get_or_create(
-                        user=form.user, openid=openid.openid
-                    )
-                success_url = openid_success_url or success_url
             messages.add_message(
                 request, messages.SUCCESS,
                 ugettext(u"Successfully logged in as %(user)s.") % {
@@ -292,29 +280,6 @@ def password_set(request, **kwargs):
     ctx.update({
         "password_set_form": password_set_form,
     })
-
-    return render_to_response(template_name, RequestContext(request, ctx))
-
-
-@login_required
-def password_delete(request, **kwargs):
-
-    template_name = kwargs.pop("template_name", "account/password_delete.html")
-
-    # prevent this view when openids is not present or it is empty.
-    if not request.user.password or \
-        (not hasattr(request, "openids") or
-            not getattr(request, "openids", None)):
-        return HttpResponseForbidden()
-
-    group, bridge = group_and_bridge(kwargs)
-
-    if request.method == "POST":
-        request.user.password = u""
-        request.user.save()
-        return HttpResponseRedirect(reverse("acct_passwd_delete_done"))
-
-    ctx = group_context(group, bridge)
 
     return render_to_response(template_name, RequestContext(request, ctx))
 

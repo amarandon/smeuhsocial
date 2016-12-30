@@ -9,11 +9,6 @@ from . import views
 from django.views.generic import TemplateView
 
 
-class PasswordDeleteView(TemplateView):
-
-    template_name = "account/password_delete_done.html"
-
-
 urlpatterns = [
     url(r"^email/$", views.email,
         name="acct_email"),
@@ -21,16 +16,10 @@ urlpatterns = [
         name="acct_signup"),
     url(r"^login/$", views.login,
         name="acct_login"),
-    url(r"^login/openid/$", views.login, {"associate_openid": True},
-        name="acct_login_openid"),
     url(r"^password_change/$",
         views.password_change, name="acct_passwd"),
     url(r"^password_set/$", views.password_set,
         name="acct_passwd_set"),
-    url(r"^password_delete/$", views.password_delete,
-        name="acct_passwd_delete"),
-    url(r"^password_delete/done/$", PasswordDeleteView.as_view(),
-        name="acct_passwd_delete_done"),
     url(r"^timezone/$", views.timezone_change,
         name="acct_timezone_change"),
 

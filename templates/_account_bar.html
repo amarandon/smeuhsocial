@@ -1,6 +1,7 @@
-{% load i18n ifsetting_tag account_tags openid_tags %}
+{% load i18n ifsetting_tag account_tags %}
+    
 {% if user.is_authenticated %}
-    {% ifopenid %}<img src="{{ STATIC_URL }}images/openid-icon.png" alt="{% trans "Logged in with OpenID" %}" />{% endifopenid %}<b>{% user_display user %}</b>
+    <b>{% user_display user %}</b>
     |
     <a href="{% url 'acct_email' %}">{% trans "Account" %}</a>
     |
@@ -8,6 +9,6 @@
         <a href="{% url 'admin:index' %}">Admin</a>
         |
     {% endif %}
-    <a href="{% if request.openid %}/openid/logout/?next={% url 'acct_logout' %}{% else %}{% url 'acct_logout' %}{% endif %}">{% trans 'Logout' %}</a>
+    <a href="{% url 'acct_logout' %}">{% trans 'Logout' %}</a>
 {% else %}
 <a href="{% url 'acct_login' %}">{% trans "Log in" %}</a> {% trans 'or' %} <a href="{% url 'acct_signup' %}">{% trans "Sign Up" %}</a> {% endif %}

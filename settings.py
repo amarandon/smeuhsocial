@@ -101,7 +101,6 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
     "account.middleware.LocaleMiddleware",
     "django.contrib.admindocs.middleware.XViewMiddleware",
@@ -136,7 +135,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mailer",
     "uni_form",
-    "django_openid",
     "ajax_validation",
     "timezone_field",
     "emailconfirmation",
@@ -173,10 +171,6 @@ INSTALLED_APPS = [
    
 ]
 
-
-MIGRATION_MODULES = {
-    'django_openid': 'migrations.django_openid',
-}
 
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),

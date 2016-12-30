@@ -4,7 +4,6 @@ from django.views.generic import RedirectView
 from django.contrib import admin
 from django.conf.urls.static import static
 
-from account.openid_consumer import PinaxConsumer
 from blog.feeds import BlogFeedAll, BlogFeedUser
 from blog.models import Post
 from friends_app.views import friends_objects
@@ -41,7 +40,6 @@ urlpatterns = [
     url(r"5c/$", legacy, name="legacy"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
-    url(r"^openid/(.*)", PinaxConsumer()),
     url(r"^profiles/", include("profiles.urls")),
 
     # Blog URLs ############################################

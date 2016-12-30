@@ -44,35 +44,7 @@
             </fieldset>
         </form>
         
-        {# @@@ currently OpenID signup is not supported via signup codes #}
         {% if not code %}
-            {# @@@ why isn't this just does as a form object ? #}
-            <form class="login form-horizontal" action="/openid/register/" method="POST" class="form-horizontal">
-                {% csrf_token %}
-                <fieldset class="inlineLabels">
-            <legend>{% trans "Or sign in with your OpenID" %}</legend>
-                    {% if url_required %}
-                        <div class="ctrlHolder error">
-                            <p class="errorField">
-                                <strong>This field is required.</strong>
-                            </p>
-                            <label for="id_username" class="col-sm-2 control-label">* OpenID Identifier</label>
-                            <input class="openid" type="text" name="openid_url" />
-                        </div>
-                    {% else %}
-                        <div class="ctrlHolder">
-                            <label for="id_username" class="col-sm-2 control-label">* OpenID Identifier</label>
-                            <div class="col-sm-10">
-                            	<input class="openid form-control" type="text" name="openid_url" />
-                            </div>
-                        </div>
-                    {% endif %}
-                    <div class="form_block">
-                        <input class="btn pull-right" type="submit" value="{% trans 'Log in &raquo;' %}" />
-                    </div>
-                </fieldset>
-            </form>
-
             {% if request.user.is_authenticated %}
                 <div><a href="{% url 'acct_logout' %}?next={{ request.path }}&amp;sm={{ split_test }}&amp;sn=logout">logout</a></div>
             {% endif %}

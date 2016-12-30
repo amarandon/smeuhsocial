@@ -33,18 +33,6 @@ def user_display(user):
     return func(user)
 
 
-def has_openid(request):
-    """
-    Given a HttpRequest determine whether the OpenID on it is associated thus
-    allowing caller to know whether OpenID is good to depend on.
-    """
-    from django_openid.models import UserOpenidAssociation
-    for association in UserOpenidAssociation.objects.filter(user=request.user):
-        if association.openid == unicode(request.openid):
-            return True
-    return False
-
-
 def perform_login(request, user):
     user_logged_in.send(sender=user.__class__, request=request, user=user)
     login(request, user)
