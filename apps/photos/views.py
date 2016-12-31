@@ -2,7 +2,8 @@ from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.template import RequestContext
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -61,8 +62,8 @@ def upload(request, form_class=PhotoUploadForm, template_name="photos/upload.htm
             if photo_form.is_valid():
                 photo = photo_form.save(commit=False)
                 photo.member = request.user
-                photo.save()
-                
+                photo.save(force_insert=True)
+
                 # in group context we create a Pool object for it
                 if group:
                     pool = Pool()
@@ -87,7 +88,7 @@ def upload(request, form_class=PhotoUploadForm, template_name="photos/upload.htm
         "photo_form": photo_form,
     })
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -112,7 +113,7 @@ def your_photos(request, template_name="photos/yourphotos.html"):
         "photos": photos,
     })
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -141,7 +142,7 @@ def photos(request, template_name="photos/latest.html"):
         "title": "Latest Photos"
     })
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -170,7 +171,7 @@ def most_viewed(request, template_name="photos/latest.html"):
         "title": _("Most Viewed Photos")
     })
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 def get_first_id_or_none(objects):
     try:
@@ -215,7 +216,7 @@ def details(request, id, template_name="photos/details.html"):
         "next_photo_id": next_photo_id,
     }
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -243,7 +244,7 @@ def user_photos(request, username, template_name="photos/user_photos.html"):
         "photos": photos,
         "username": username
     })    
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 @login_required
 def tagged_photos(request, tagname, template_name="photos/tagged_photos.html"):
@@ -263,7 +264,7 @@ def tagged_photos(request, tagname, template_name="photos/tagged_photos.html"):
         "photos": photos,
         "tag": tagname
     })    
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -323,7 +324,7 @@ def edit(request, id, form_class=PhotoEditForm, template_name="photos/edit.html"
         "photo_url": photo_url,
     })
     
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 @login_required
 def destroy(request, id):

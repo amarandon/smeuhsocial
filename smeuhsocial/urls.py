@@ -107,9 +107,9 @@ urlpatterns += [
     url(r"^tags/(?P<tagname>.+)/$", tag_home, name="tag_homepage"),
     url(r"^tags/$", tag_index, kwargs={'limit': 1000},
         name="tagging_ext_index"),
-    url("^(?P<username>[\w\._-]+)/music", include(
+    url("^(?P<username>[\w\._-]+)/music/", include(
         "audiotracks.urls"), name="user_track"),
-    url("^music", include("audiotracks.urls")),
+    url("^music/", include("audiotracks.urls")),
     url(r"^(?P<username>[\w\._-]+)/$", user_home, name="profile_detail"),
 ]
 

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-from photologue.models import *
+from photologue.models import ImageModel
 
 from tagging.fields import TagField
 
