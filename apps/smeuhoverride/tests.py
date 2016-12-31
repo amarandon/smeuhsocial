@@ -27,3 +27,10 @@ class TestHomePage(BaseTestCase):
     def test_home_page(self):
         resp = self.client.get('/')
         self.assertContains(resp, 'Homepage')
+
+
+class TestTags(BaseTestCase):
+
+    def test_get_index(self):
+        response = self.client.get("/tags/")
+        self.assertEqual(response.status_code, 200)
