@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.utils.http import base36_to_int
 from django.utils.translation import ugettext
@@ -97,7 +97,7 @@ def login(request, **kwargs):
     })
     ctx.update(extra_context)
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 def signup(request, **kwargs):
@@ -130,9 +130,8 @@ def signup(request, **kwargs):
                     "email": form.cleaned_data["email"],
                     "success_url": success_url,
                 })
-                ctx = RequestContext(request, ctx)
-                return render_to_response("account/verification_sent.html",
-                                          ctx)
+                return render(request, "account/verification_sent.html",
+                              ctx)
             else:
                 form.login(request, user)
                 messages.add_message(
@@ -152,7 +151,7 @@ def signup(request, **kwargs):
             request.POST.get(redirect_field_name)),
     })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -221,7 +220,7 @@ def email(request, **kwargs):
         "add_email_form": add_email_form,
     })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -251,7 +250,7 @@ def password_change(request, **kwargs):
         "password_change_form": password_change_form,
     })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -281,7 +280,7 @@ def password_set(request, **kwargs):
         "password_set_form": password_set_form,
     })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 def password_reset(request, **kwargs):
@@ -309,7 +308,7 @@ def password_reset(request, **kwargs):
         "password_reset_form": password_reset_form,
     })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 def password_reset_done(request, **kwargs):
@@ -320,7 +319,7 @@ def password_reset_done(request, **kwargs):
     group, bridge = group_and_bridge(kwargs)
     ctx = group_context(group, bridge)
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 def password_reset_from_key(request, uidb36, key, **kwargs):
@@ -362,7 +361,7 @@ def password_reset_from_key(request, uidb36, key, **kwargs):
             "token_fail": True,
         })
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -386,7 +385,7 @@ def timezone_change(request, **kwargs):
     ctx = group_context(group, bridge)
     ctx.update({"form": form})
 
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
 
 
 @login_required
@@ -411,4 +410,4 @@ def language_change(request, **kwargs):
 
     ctx = group_context(group, bridge)
     ctx.update({"form": form})
-    return render_to_response(template_name, RequestContext(request, ctx))
+    return render(request, template_name, ctx)
