@@ -34,4 +34,4 @@ psycopg2
 django-bootstrap3==7.1
 
 -e git+https://git@github.com/amarandon/pinax.git#egg=Pinax
--e git+https://git@github.com/amarandon/django-audiotracks.git@django19#egg=django_audiotracks
+-e git+https://git@github.com/amarandon/django-audiotracks.git@master#egg=django_audiotracks
