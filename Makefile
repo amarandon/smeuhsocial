@@ -6,9 +6,6 @@ TEST_COMMAND=manage.py test $(TEST_APPS)
 OMIT_COVERAGE=*_settings.py,fabfile.py,*/migrations/*.py
 
 
-install_dev:
-	pip install -r dev_requirements.txt
-
 install:
 	pip install -r requirements.txt
 	python manage.py migrate
