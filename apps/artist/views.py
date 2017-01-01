@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.db.models import Count
 
@@ -36,10 +36,10 @@ def index(request):
         current = end   
     
     
-    return render_to_response("artist/index.html", { 'artists': names, 'columns': columns }, context_instance = RequestContext(request))
+    return render(request, "artist/index.html", { 'artists': names, 'columns': columns })
 
 def artist(request, name):
     
     tracks = get_track_model().objects.filter(artist = name).order_by('-created_at')
     
-    return render_to_response("artist/artist.html", {'tracks': tracks, 'artist': name }, context_instance = RequestContext(request))
+    return render(request, "artist/artist.html", {'tracks': tracks, 'artist': name })

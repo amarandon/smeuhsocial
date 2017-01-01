@@ -1,7 +1,7 @@
 # Let's put often used management commands in this Makefile so we can use it as
 # executable documentation
 TEST_APPS=smeuhoverride microblogging threadedcomments friends messages \
-	  avatar photos timeline blog profiles account
+	  avatar photos timeline blog profiles account artist
 TEST_COMMAND=manage.py test $(TEST_APPS)
 OMIT_COVERAGE=*_settings.py,fabfile.py,*/migrations/*.py
 
