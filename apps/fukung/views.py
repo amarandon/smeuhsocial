@@ -1,5 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -28,11 +27,9 @@ def view(request, photo_id):
     next_photo_id = get_first_id_or_none(photos.filter(id__gt=photo.id,
         is_public=True).order_by('id'))
    
-    return render_to_response('fukung/index.html',
+    return render(request, 'fukung/index.html',
         {'photo': photo, 
          'photo_url': photo.get_display_url(),
          'previous_photo_id' : previous_photo_id,
          'next_photo_id': next_photo_id
-         },
-        context_instance=RequestContext(request)
-        )
+         })

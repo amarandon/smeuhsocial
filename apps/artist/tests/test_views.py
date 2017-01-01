@@ -1,7 +1,7 @@
 from smeuhoverride.tests import BaseTestCase
 
 
-class TestTimeline(BaseTestCase):
+class TestViews(BaseTestCase):
 
     def test_get_artist_index(self):
         response = self.client.get('/artist/')

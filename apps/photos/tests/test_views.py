@@ -1,40 +1,24 @@
 # coding=utf-8
 import os
-import shutil
 from smeuhoverride.tests import BaseImageTest
 from django.test import override_settings
-from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
 from photos.models import Image
+from photos.tests.helpers import ImageTestMixin, DATA_DIR
 
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-
-
-class TestPhotos(BaseImageTest):
-
-    filepath = os.path.join(DATA_DIR, u"Là où j ai dormi cette nuit.jpg")
-
-    def tearDown(self):
-        filename = os.path.join(DATA_DIR, "La_ou_j_ai_dormi_cette_nuit.jpg")
-        if os.path.exists(filename):
-            os.unlink(filename)
-        cache_dir = os.path.join(DATA_DIR, "cache")
-        if os.path.exists(cache_dir):
-            shutil.rmtree(cache_dir)
+class TestPhotos(ImageTestMixin, BaseImageTest):
 
     @override_settings(MEDIA_ROOT=DATA_DIR)
     def test_listing(self):
-        Image.objects.create(member=self.me, title="test photo",
-                             image=File(open(self.filepath)))
+        self.create_image()
         response = self.client.get("/photos/")
         self.assertEqual(response.status_code, 200)
 
     @override_settings(MEDIA_ROOT=DATA_DIR)
     def test_details(self):
-        image = Image.objects.create(member=self.me, title="test photo",
-                                     image=File(open(self.filepath)))
+        image = self.create_image()
         response = self.client.get("/photos/details/%s/" % image.pk)
         self.assertEqual(response.status_code, 200)
 
@@ -45,8 +29,7 @@ class TestPhotos(BaseImageTest):
             'testuser@gmail.com',
             'password',
         )
-        Image.objects.create(member=user, title="test photo",
-                             image=File(open(self.filepath)))
+        self.create_image()
         response = self.client.get("/photos/")
         self.assertEqual(response.status_code, 200)
 
